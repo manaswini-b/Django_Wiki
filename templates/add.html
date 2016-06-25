@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add an article</title>
+	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+</head>
+<body>
+	<h1>{{error}}</h1><br/>
+	<h1>Add an article</h1>
+	<form method="post" action="/save/">
+		Enter the name of article : <br/>
+		<input type="text" name="page_name"/><br/><br/>
+		Enter the article content : <br/>
+		<textarea name="content" rows="20" cols="60">{{content}}</textarea><br/>
+		<input type="submit" value="save page"/>
+	</form>
+	<script>
+        CKEDITOR.replace( 'content' );
+    </script>
+</body>
+</html>

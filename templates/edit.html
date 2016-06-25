@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>{{page_name}} - Editing</title>
+	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+</head>
+<body>
+	<h1>Editing {{page_name}}</h1>
+	<form method="post" action="/wiki/{{page_name}}/save/">
+		<textarea name="content" rows="20" cols="60">{{content}}</textarea><br/>
+		<input type="submit" value="save page"/>
+	</form>
+	<script>
+        CKEDITOR.replace( 'content' );
+    </script>
+</body>
+</html>
