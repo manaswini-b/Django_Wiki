@@ -1,0 +1,1 @@
+# Wiki app in Django
