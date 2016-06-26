@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from wiki.models import Page
+from django.http import JsonResponse
 from django.shortcuts import render
 # Create your views here.
 def view_page(request, page_name):
@@ -41,3 +42,46 @@ def save_add(request):
 		page = Page(name=page_name, content= content)
 		page.save()
 		return HttpResponseRedirect("/")
+def api_all(request):
+	fill = {}
+	lt = []
+	ct=[]
+	page = Page.objects.all()
+	for i in page:
+		lt.append(i.name)
+	fill['title'] = lt
+	return JsonResponse(fill)
+def api_page(request,page_name):
+	page = Page.objects.all()
+	fill1={}
+	for j in page:
+		if j.name==page_name:
+			fill1['content']=j.content
+	return JsonResponse(fill1)
+def delete_page(request,page_name):
+	msg={}
+	try:
+		page = Page.objects.get(pk=page_name)
+		page.delete()
+		msg["status"]="200 OK"
+	except Page.DoesNotExist:
+		msg["status"]="404 Error"
+		
+
+	return JsonResponse(msg)
+def add_details(request,page_name):
+	msg={}
+	if request.method == 'POST':
+		content = request.POST.get("content","")
+		try:
+			page = Page.objects.get(pk=page_name)
+			page.content = content
+			msg["status"]="200 OK"
+		except Page.DoesNotExist:
+			page = Page(name=page_name, content= content)
+			msg["status"]="201 Empty"
+		page.save()
+	else:
+		msg["status"] = "202 Invalid"
+	return JsonResponse(msg)
+

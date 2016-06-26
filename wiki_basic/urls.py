@@ -20,9 +20,13 @@ from wiki import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^wiki/api/(?P<page_name>[-\w]+)/$',views.api_page),
     url(r'^wiki/(?P<page_name>[^/]*)/edit/$',views.edit_page),
     url(r'^wiki/(?P<page_name>[^/]*)/save/$',views.save_page),
     url(r'^wiki/(?P<page_name>[^/]*)/$',views.view_page),
+    url(r'^wiki/api/all/$',views.api_all),
+    url(r'^wiki/api/(?P<page_name>[^/]*)/delete/$',views.delete_page),
+    url(r'^wiki/api/add/(?P<page_name>[^/]*)/$',views.add_details),
     url(r'^$',views.index_page),
     url(r'^add/',views.add_page),
     url(r'^save/',views.save_add)
