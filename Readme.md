@@ -2,7 +2,7 @@
 
 ## this makes basic works that the wiki app do!
 
-### Api links
+### API links
 
 -	/wiki/api/add/:title<br/>
 	(Ex:  curl --data "content=First_Article" -X POST http://localhost:8000/wiki/api/add/welcome/)<br/>
