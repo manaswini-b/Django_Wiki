@@ -25,7 +25,7 @@
 	The value to the key is the content of the corresponding article.<br/>
 
 -	/wiki/:title/delete<br/>
-	DELETE request<br/>
+	GET request<br/>
 	(Ex: wiki/welcome/delete, where 'welcome' is an article title)<br/>
 	Will return a json with key("status")<br/>
 	{"status" : "200 OK"} -> Will delete the entire article if exists.<br/>
