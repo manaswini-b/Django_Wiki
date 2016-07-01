@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Wiki</title>
+	<h1>Django_Wiki</h1>
+	<a href="/">Home</a> | <a href="/browse">Browse All</a> | <a href="/search">Search</a> | <a href="/add">Add a article</a>
+	<hr/>
+</head>
+<body>
+<style type="text/css">
+	#parent {
+  display: flex;
+}
+#narrow {
+  width: 30%;
+  /* Just so it's visible */
+}
+#wide {
+  flex: 1;
+  /* Just so it's visible */
+}
+</style>
+<div id="parent">
+  <div id="wide">
+  		<h1> All Articles </h1>
+	{% if data %}
+	<ul>
+   {% for e in data %}
+      <li><a href="/wiki/{{e.name}}/">{{e.name}} ({{e.cate}})</a></li>
+   {% endfor %}
+{% else %}
+   There are no articles.
+{% endif %}
+  </div>
+  <div id="narrow">
+  	<h1>View by Category</h1>
+  		{% if cate %}
+	<ul>
+   {% for e in cate %}
+      <li><a href="/wiki/{{e}}/browse">{{e}}</a></li>
+   {% endfor %}
+{% else %}
+   There are no categories.
+{% endif %}
+  </div>
+</div>
+</body>
+</html> 
+

@@ -2,15 +2,35 @@
 <head>
 	<title>{{page_name}} - Editing</title>
 	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+	<h1>Django_Wiki</h1>
+	<a href="/">Home</a> | <a href="/browse">Browse All</a> | <a href="/search">Search</a> | <a href="/add">Add a article</a>
+	<hr/>
 </head>
 <body>
 	<h1>Editing {{page_name}}</h1>
 	<form method="post" action="/wiki/{{page_name}}/save/">
+		Category : 
+		<select name="cate" id="cate">
+		{% for e in data %}
+      		 <option value="{{e}}">{{e}}</option>
+   		{% endfor %}
+   		</select><br/><br/>
 		<textarea name="content" rows="20" cols="60">{{content}}</textarea><br/>
 		<input type="submit" value="save page"/>
 	</form>
 	<script>
         CKEDITOR.replace( 'content' );
     </script>
+    <script>
+	var temp = "General";
+	var mySelect = document.getElementById('cate');
+
+	for(var i, j = 0; i = mySelect.options[j]; j++) {
+	    if(i.value == temp) {
+	        mySelect.selectedIndex = j;
+	        break;
+	    }
+	}
+	</script>
 </body>
 </html>

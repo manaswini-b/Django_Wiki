@@ -6,9 +6,15 @@
 	<hr/>
 </head>
 <body>
-	<h1> Welcome to Django wiki app </h1>
-
-	Please use the menu on the top to navigate and search different articles.
+	<h1> All Article in {{page_name}} </h1>
+	{% if data %}
+	<ul>
+   {% for e in data %}
+      <li><a href="/wiki/{{e.name}}/">{{e.name}}</a></li>
+   {% endfor %}
+{% else %}
+   There are no articles.
+{% endif %}
 </body>
 </html> 
 

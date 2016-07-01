@@ -1,15 +1,23 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<title>Add an article</title>
 	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+	<h1>Django_Wiki</h1>
+	<a href="/">Home</a> | <a href="/browse">Browse All</a> | <a href="/search">Search</a> | <a href="/add">Add a article</a>
+	<hr/>
 </head>
 <body>
-	<h1>{{error}}</h1><br/>
+	<h1>{{error}}</h1>
 	<h1>Add an article</h1>
 	<form method="post" action="/save/">
 		Enter the name of article : <br/>
 		<input type="text" name="page_name"/><br/><br/>
+		Category : 
+		<select name="cate" id="cate">
+		{% for e in data %}
+      		 <option value="{{e}}">{{e}}</option>
+   		{% endfor %}
+   		</select><br/><br/>
 		Enter the article content : <br/>
 		<textarea name="content" rows="20" cols="60">{{content}}</textarea><br/>
 		<input type="submit" value="save page"/>
@@ -17,5 +25,16 @@
 	<script>
         CKEDITOR.replace( 'content' );
     </script>
+    <script>
+	var temp = "General";
+	var mySelect = document.getElementById('cate');
+
+	for(var i, j = 0; i = mySelect.options[j]; j++) {
+	    if(i.value == temp) {
+	        mySelect.selectedIndex = j;
+	        break;
+	    }
+	}
+	</script>
 </body>
 </html>

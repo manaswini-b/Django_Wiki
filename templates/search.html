@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>Search</title>
+	<h1>Django_Wiki</h1>
+	<a href="/">Home</a> | <a href="/browse">Browse All</a> | <a href="/search">Search</a> | <a href="/add">Add a article</a>
+	<hr/>
+</head>
+<body>
+	<form method="post" action="">
+		{{form}}
+		<input type="submit" value="Search"/>
+	</form>
+
+	{% if pages %}
+	<h2>Search result for page name</h2>
+	<ul>
+	{% for page in pages %}
+	<li><a href="/wiki/{{page.name|escape}}/">{{page.name|escape}}</a></li>
+	{% endfor %}
+	{% endif %}
+
+	{% if contents %}
+	<h2>Search result for page contents</h2>
+	<ul>
+	{% for page in contents %}
+	<li><a href="/wiki/{{page.name|escape}}/">{{page.name|escape}}</a></li>
+	{% endfor %}
+	{% endif %}
+</body>
+</html>

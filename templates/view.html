@@ -1,13 +1,13 @@
 <html>
 <head>
 	<title>{{page_name}}</title>
+	<h1>Django_Wiki</h1>
+	<a href="/">Home</a> | <a href="/browse">Browse All</a> | <a href="/search">Search</a> | <a href="/add">Add a article</a> | <a href="/wiki/{{page_name}}/edit/">Edit this article</a> 
+	<hr/>
 </head>
 <body>
 	<h1>{{page_name}}</h1>
+	Category : {{cate}}
 	{{content|safe}}
-	<hr/>
-	<a href="/wiki/{{page_name}}/edit/">Edit this ?</a> 
-	<br/>
-	<a href="/" > go home? </a>
 </body>
 </html>
