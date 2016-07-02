@@ -1,11 +1,18 @@
 <html>
 <head>
 	<title>{{page_name}}</title>
-	<h1>Django_Wiki</h1>
-	<a href="/">Home</a> | <a href="/browse">Browse All</a> | <a href="/search">Search</a> | <a href="/add">Add a article</a>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <ul class="nav nav-pills" style="padding-left:20px">
+    <h1>Django_Wiki</h1>
+    <li role="presentation"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/browse">Browse All</a></li>
+    <li role="presentation"><a href="/search">Search</a></li>
+    <li role="presentation"><a href="/add">Add a article</a></li>
+  </ul>
 	<hr/>
 </head>
-<body>
+<body class="container">
 	<h1>{{page_name}} does not exist!</h1>
 	<a href="/wiki/{{page_name}}/edit">Create one?</a>
 </body>
