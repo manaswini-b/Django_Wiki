@@ -6,7 +6,15 @@ from django.shortcuts import render
 from django import 	forms as forms
 # Create your views here.
 
-cate = ['General', 'Tech', 'Entertainment', 'Health', 'Cars']  #Add the Category list here!
+
+def find_cate():
+	cate = []
+	page = Page.objects.all()
+	for i in page:
+		cate.append(i.cate)
+	seen = set()
+	seen_add = seen.add
+	return [x for x in cate if not (x in seen or seen_add(x))]
 
 class SearchForms(forms.Form):
 	text = forms.CharField(label = "Enter search term")
@@ -58,7 +66,7 @@ def save_page(request,page_name):
 
 def browse_page(request):
 	page = Page.objects.all()
-	return render(request, 'browse.html',{'data': page,"cate":cate})
+	return render(request, 'browse.html',{'data': page,"cate": find_cate()})
 
 def index_page(request):
 	return render_to_response('index.html')
