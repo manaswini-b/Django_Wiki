@@ -1,4 +1,5 @@
 <html>
+{% load to_and %}
 <head>
   <title>Wiki</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -28,11 +29,11 @@
 </style>
 <div id="parent">
   <div id="wide">
-  		<h1> All Articles </h1>
+  		<h1> All Articles </h1
 	{% if data %}
 	<ul>
    {% for e in data %}
-      <li><a href="/wiki/{{e.name}}/">{{e.name}} ({{e.cate}})</a></li>
+      <li><a href="/wiki/{{e.name|to_and}}/">{{e.name}} ({{e.cate}})</a></li>
    {% endfor %}
 {% else %}
    There are no articles.
