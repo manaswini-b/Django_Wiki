@@ -41,7 +41,8 @@ def view_page(request, page_name):
 	except Page.DoesNotExist:
 		return render_to_response("create.html",{"page_name":page_name.replace("__","?").replace("^^","/")})
 	content = page.content
-	return render_to_response("view.html",{"page_name":page_name.replace("__","?").replace("^^","/"),"content":content,"cate": page.cate})
+	date = page.date
+	return render_to_response("view.html",{"page_name":page_name.replace("__","?").replace("^^","/"),"content":content,"cate": page.cate,"date": date})
 def edit_page(request,page_name):
 	try:
 		page = Page.objects.get(pk=page_name)
@@ -86,11 +87,12 @@ def save_add(request):
 	content = request.POST.get("content","")
 	page_name = request.POST.get("page_name","")
 	cate = request.POST.get("cate","")
+	date = request.POST.get("date","")
 	try:
 		page = Page.objects.get(pk=page_name.replace("?","__").replace("/","^^"))
 		return render_to_response("add.html",{"error":"Name already exist"})
 	except Page.DoesNotExist:
-		page = Page(name=page_name.replace("?","__").replace("/","^^"), content= content, cate = cate)
+		page = Page(name=page_name.replace("?","__").replace("/","^^"), content= content, cate = cate, date = date)
 		page.save()
 		return HttpResponseRedirect("/browse")
 def api_all(request):
@@ -126,13 +128,15 @@ def add_details(request,page_name):
 	if request.method == 'POST':
 		content = request.POST.get("content","")
 		cate = request.POST.get("cate","")
+		date = request.POST.get("date","")
 		try:
 			page = Page.objects.get(pk=page_name)
 			page.content = content
 			page.cate = cate
+			page.date = date
 			msg["status"]="200 OK"
 		except Page.DoesNotExist:
-			page = Page(name=page_name, content= content , cate = cate)
+			page = Page(name=page_name, content= content , cate = cate ,date = date)
 			msg["status"]="201 Empty"
 		page.save()
 	else:

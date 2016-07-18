@@ -4,3 +4,4 @@ class Page(models.Model):
 	name=models.CharField(max_length=20,primary_key=True)
 	content=models.TextField(blank=True)
 	cate=models.TextField(blank=False)
+	date=models.TextField(blank=True)

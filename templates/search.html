@@ -17,12 +17,12 @@
 		{{form}}
 		<input type="submit" value="Search"/>
 	</form>
-
+	{% load to_and %}
 	{% if pages %}
 	<h2>Search result for page name</h2>
 	<ul>
 	{% for page in pages %}
-	<li><a href="/wiki/{{page.name|escape}}/">{{page.name|escape}}</a></li>
+	<li><a href="/wiki/{{page.name|escape|to_and}}/">{{page.name|escape}}</a></li>
 	{% endfor %}
 	{% endif %}
 
@@ -30,7 +30,7 @@
 	<h2>Search result for page contents</h2>
 	<ul>
 	{% for page in contents %}
-	<li><a href="/wiki/{{page.name|escape}}/">{{page.name|escape}}</a></li>
+	<li><a href="/wiki/{{page.name|escape|to_and}}/">{{page.name|escape}}</a></li>
 	{% endfor %}
 	{% endif %}
 </body>

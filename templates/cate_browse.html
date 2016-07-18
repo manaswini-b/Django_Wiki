@@ -12,12 +12,13 @@
 	</ul>
 	<hr/>
 </head>
+{% load to_and %}
 <body class="container">
 	<h1> All Article in {{page_name}} </h1>
 	{% if data %}
 	<ul>
    {% for e in data %}
-      <li><a href="/wiki/{{e.name}}/">{{e.name}}</a></li>
+      <li><a href="/wiki/{{e.name | to_and}}/">{{e.name}}</a></li>
    {% endfor %}
 {% else %}
    There are no articles.
